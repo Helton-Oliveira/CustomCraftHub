@@ -3,5 +3,5 @@ package com.digisphere.CustomCraftHub.application.price.priceGeneratorfactory.pr
 import java.util.Map;
 
 public interface IPriceCalculator {
-    Double calculateFinalPrice(Map<String, String> materials);
+    Double calculateFinalPrice();
 }

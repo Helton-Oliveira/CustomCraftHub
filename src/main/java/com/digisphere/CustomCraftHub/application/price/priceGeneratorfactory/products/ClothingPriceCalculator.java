@@ -9,7 +9,7 @@ public class ClothingPriceCalculator implements IPriceCalculator{
     private List<Double> priceList;
 
     @Override
-    public Double calculateFinalPrice(Map<String, String> materials) {
+    public Double calculateFinalPrice() {
 
         Double totalValueWithoutProfit = 0.0;
         for (Double price : priceList) {
