@@ -3,26 +3,38 @@ package com.digisphere.CustomCraftHub;
 import com.digisphere.CustomCraftHub.application.price.priceGeneratorfactory.factory.ClothingPriceFactory;
 import com.digisphere.CustomCraftHub.application.price.priceGeneratorfactory.factory.FurniturePriceFactory;
 import com.digisphere.CustomCraftHub.application.price.priceGeneratorfactory.factory.ProductPriceFactory;
+import com.digisphere.CustomCraftHub.application.price.priceGeneratorfactory.strategy.IPriceCalculationContext;
+import com.digisphere.CustomCraftHub.application.price.priceGeneratorfactory.strategy.PriceCalculationContext;
+import com.digisphere.CustomCraftHub.application.price.useCase.IShowPrice;
+import com.digisphere.CustomCraftHub.application.price.useCase.ShowPrice;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PriceTest {
 
-   /* @Test
+    @Test
     @DisplayName("Deve precificar produto de acordo com escolhas do usuario")
     void price() {
-        Map<String, String> data = new HashMap<>();
+        IPriceCalculationContext priceFactory = new PriceCalculationContext();
 
-        IShowPrice product = new ShowPrice();
+        Map<String, String> data = Map.of(
+                "category", "furniture",
+                "mdf", "branco_fosco",
+                "mesa", "pequena",
+                "ferragens", "puxadores",
+                "acabamentos", "verniz_fosco"
+        );
+
+        IShowPrice product = new ShowPrice(priceFactory);
         Double getPrice = product.execute(data);
 
+        System.out.println(getPrice);
         assertThat(getPrice <= 0).isFalse();
-    }*/
+    }
 
     @Test
     @DisplayName("Deve precificar produto de acordo com escolhas do usuario")
@@ -48,6 +60,7 @@ public class PriceTest {
 
         Map<String, String> materials = Map.of(
                 "tecidos", "poliester",
+                "camisa", "m",
                 "botoes", "simples"
         );
 
