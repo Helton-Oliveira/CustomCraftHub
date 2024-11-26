@@ -1,12 +1,21 @@
 package com.digisphere.CustomCraftHub.application.price.priceGeneratorfactory.factory;
 
 import com.digisphere.CustomCraftHub.application.price.priceGeneratorfactory.products.IPriceCalculator;
+import com.digisphere.CustomCraftHub.application.price.utils.ReadFile;
+
+import java.util.List;
+import java.util.Map;
 
 public abstract class ProductPriceFactory {
-    public abstract IPriceCalculator calculateProductPrice();
+    public abstract IPriceCalculator createPriceCalculator(Map<String, String> materials);
 
-    public Double calculate() {
-        return calculateProductPrice().calculateFinalPrice();
+    public Double calculatePrice(Map<String, String> materials) {
+        IPriceCalculator calculator = createPriceCalculator(materials);
+        return calculator.calculateFinalPrice(materials);
+    }
+
+    protected List<Double> readFile(String fileName, Map<String, String> materials) {
+        return ReadFile.read(fileName, materials);
     }
 
 }
